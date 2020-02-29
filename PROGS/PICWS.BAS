@@ -1,0 +1,28 @@
+CLS
+SCREEN 1
+PRINT "VIKI SNAPSHOT MUST BE LOADED - !"
+PRINT "Press ALT-TAB"
+DEF SEG = &HB800
+DIM PIC(16380)
+PRINT "Waiting ..."
+WHILE INKEY$ = ""
+WEND
+WHILE INKEY$ = ""
+WEND
+GET (0, 0)-(319, 199), PIC
+LOCATE 1, 1
+CLS
+INPUT "Enter Picture Name - ", NAME$
+CLS
+PUT (0, 0), PIC
+BSAVE NAME$ + ".CGA", 0, 16384
+PRINT "Picture save as " + UCASE$(NAME$) + ".CGA"
+CLS
+INPUT "Do you wish to load it (Y/N) - ", QUE$
+QUE$ = UCASE$(QUE$)
+IF QUE$ = "Y" THEN
+        CLS
+        BLOAD NAME$ + ".CGA"
+END IF
+END
+
